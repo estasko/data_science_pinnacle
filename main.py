@@ -48,8 +48,30 @@ for key in dataframes:
     plt.subplot(2, 4, subplot_num)
     plt.title(f"{key} as Predictor for Diabetes Outcome", size = 10)
     sns.violinplot(data = dataframes[key], y = key, x = 'Outcome')
-    subplot_num +=1
-    
+    subplot_num +=1 
 
 plt.tight_layout()
+
+#%%
+
+# Compare age and glucose against outcome 
+
+preg_glucose = data.loc[:,('Pregnancies', 'Glucose', 'Outcome')].query('Glucose !=0')
+plt.figure(2, clear = True)
+sns.violinplot(data=preg_glucose, x = 'Pregnancies', y = 'Glucose', hue = 'Outcome', split = True)
+
+
+preg = pd.cut(data.loc[:,'Pregnancies'], 5,
+       # labels=["group 1", "group 2", "group 3", "group 4", "group 5"]
+       )
+
+preg_glucose = pd.DataFrame(data = {"Pregnancies": preg,
+                                    "Glucose": data.loc[:,('Glucose')],
+                                    "Outcome": data.loc[:,('Outcome')]
+                                                           })
+plt.figure(3, clear = True)
+sns.violinplot(data=preg_glucose, x = 'Pregnancies', y = 'Glucose', hue = 'Outcome')
+
+
+
 
