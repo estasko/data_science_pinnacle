@@ -10,6 +10,8 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
+import warnings 
+warnings.filterwarnings('ignore', category=FutureWarning)
 #%%
 # Read in the dataset
 data = pd.read_csv('Healthcare-Diabetes.csv', index_col= 'Id')
@@ -91,17 +93,31 @@ plt.title('Pregnancies vs 2-Hour Serum Insulin')
 plt.xlabel('Pregnancies')
 plt.ylabel('2-Hour Serum Insulin mu U/mL')
 
-#%% Exploring the Data
+#%% Learning about the Data
+
 plt.figure(3, clear = True)
+plt.tight_layout()
+plt.subplot(1,3,1)
+sns.histplot(cleaned_data, 
+              x = 'Age')
+plt.title('Age of Participants in Dataset')
+
+plt.subplot(1,3,2)
+sns.histplot(cleaned_data, 
+              x = 'BMI')
+plt.title('BMI of Participants in Dataset')
+
+plt.subplot(1,3,3)
+sns.histplot(cleaned_data, 
+              x = 'Pregnancies',
+              bins = 17)
+plt.title('Number of Pregnancies of Participants in Dataset')
+
+plt.figure(4, clear = True)
 sns.histplot(cleaned_data,
              x = 'Insulin',
              hue = 'Outcome')
 plt.title('2-Hour Insulin Serum by Diabetes Diagnosis')
-
-plt.figure(4, clear = True)
-sns.histplot(cleaned_data, 
-              x = 'Age')
-plt.title('Age of Participants in Dataset')
 
 plt.figure(5, clear = True)
 sns.histplot(cleaned_data, 
