@@ -11,6 +11,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
 import warnings 
+from sklearn import tree, ensemble
 warnings.filterwarnings('ignore', category=FutureWarning)
 #%%
 # Read in the dataset
@@ -125,3 +126,27 @@ sns.histplot(cleaned_data,
               hue = 'Outcome',
               bins = 2)
 plt.title('Diagnosis Count Among Participants')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
